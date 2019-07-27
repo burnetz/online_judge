@@ -26,7 +26,7 @@ public class C {
 		}
 		
 		long result = 0;
-		//左から倒すだけ？
+		//右から倒すだけ
 		for(int i = n - 1; i >= 0; i--){
 			int right = Math.min(a[i + 1], b[i]);
 			
