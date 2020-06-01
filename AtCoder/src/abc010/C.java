@@ -1,6 +1,5 @@
 package abc010;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class C {
@@ -8,36 +7,31 @@ public class C {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
+		int txa = sc.nextInt();
+		int tya = sc.nextInt();
+		int txb = sc.nextInt();
+		int tyb = sc.nextInt();
+
+		int t = sc.nextInt();
+		int v = sc.nextInt();
+
 		int n = sc.nextInt();
 
-		int dp[] = new int[300 + 1];
-		boolean ng[] = new boolean[300 + 1];
-		for(int i = 0; i < 3; i++){
-			ng[sc.nextInt()] = true;
-		}
+		boolean result = false;
+		for(int i = 0; i < n; i++){
+			int x1 = sc.nextInt();
+			int y1 = sc.nextInt();
 
-		Arrays.fill(dp, 1_000_000);
-		dp[0] = 0;
-		for(int i = 1; i <= n; i++){
-			if(ng[i]){
-				continue;
-			}
-
-			dp[i] = Math.min(dp[i], dp[i - 1] + 1);
-			if(i >= 2){
-				dp[i] = Math.min(dp[i], dp[i - 2] + 1);
-			}
-			if(i >= 3){
-				dp[i] = Math.min(dp[i], dp[i - 3] + 1);
+			if(dist(txa, tya, x1, y1) + dist(x1, y1, txb, tyb) <= v*t){
+				result = true;
+				break;
 			}
 		}
 
-		if(dp[n] <= 100){
-			System.out.println("YES");
-		}
-		else {
-			System.out.println("NO");
-		}
+		System.out.println(result ? "YES" : "NO");
+	}
 
+	static double dist(int x0, int y0, int x1, int y1){
+		return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
 	}
 }

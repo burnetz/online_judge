@@ -7,7 +7,7 @@ public class A {
 	public static void main(String[] args)  {
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println((sc.nextInt())%12 + 1);
+		System.out.println(sc.next() + "pp");
 	}
 
 }
