@@ -79,7 +79,9 @@ class DisjointSet {
 		int num2 = num[p2];
 		link (findSet(x), findSet(y));
 		
-		num[p1] = num[p2] = num1 + num2;
+		if(p1 != p2) {
+			num[p1] = num[p2] = num1 + num2;
+		}
 		
 	}
 	
