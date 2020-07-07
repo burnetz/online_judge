@@ -1,6 +1,5 @@
 package arc034;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class B {
@@ -9,31 +8,28 @@ public class B {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 
-		long n = sc.nextLong();
+		String input = sc.next();
+		//BCをあらかじめDと置き換えて良い
+		input = input.replaceAll("BC", "D");
 
-		ArrayList<Long> list = new ArrayList<Long>();
-		//f(x)が取りうる値はせいぜい9*桁数までなので
-		//nが大きくなれば初期値も合わせて大きくなり回す数は少なくてよい
-		for(long i = Math.max(1, n - 9*20); i <= n; i++){
-			if(i + func(i) == n){
-				list.add(i);
+		//残ったBやCは区切りとして使う
+		String array[] = input.split("[BC]");
+		long result = 0;
+		for(int i = 0; i < array.length; i++){
+
+			//最終的にはDDDD...AAAA..となるので転置数を求める
+			int countA = 0;
+			for(int j = 0; j < array[i].length(); j++){
+				int c = array[i].charAt(j);
+
+				if(c == 'A'){
+					countA++;
+				}
+				else {
+					result += countA;
+				}
 			}
 		}
-
-		System.out.println(list.size());
-		for(int i = 0; i < list.size(); i++){
-			System.out.println(list.get(i));
-		}
-	}
-
-	static int func(long n){
-		int result = 0;
-
-		while(n > 0){
-			result += n % 10;
-			n /= 10;
-		}
-
-		return result;
+		System.out.println(result);
 	}
 }
