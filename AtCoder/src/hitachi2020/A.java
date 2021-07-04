@@ -1,4 +1,4 @@
-package hitachi2021;
+package hitachi2020;
 
 import java.util.Scanner;
 
