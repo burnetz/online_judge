@@ -8,10 +8,14 @@ public class A {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 
-		int a = sc.nextInt();
-		int b = sc.nextInt();
+		String a = sc.next();
+		int b = sc.nextInt() - 1;
 
-		System.out.println(Math.max(a, b));
+		int n = a.length();
+
+		b %= n;
+
+		System.out.println(a.charAt(b));
 	}
 
 }
