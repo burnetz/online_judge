@@ -1,8 +1,6 @@
 package codefes2014final;
 
-import java.util.Collections;
 import java.util.Scanner;
-import java.util.Vector;
 
 public class C {
 
@@ -10,31 +8,24 @@ public class C {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 
-		char[] str = sc.nextLine().toCharArray();
-		
-		Vector<String> users = new Vector<String>();
-		
-		for(int i = 0; i < str.length - 1; i++) {
-			if(str[i] == '@' && str[i + 1] >= 'a' && str[i + 1] <= 'z') {
-				String tmp = "";
+		long n = sc.nextLong();
+		//f(i)の値自体を順に調べても十分間に合う
+		for(int i = 10; i <= 20000; i++) {
+			long tmpN = i;
+			long tmpSum = 0;
+			long tmpOffset = 1;
+			
+			while(tmpN > 0) {
+				tmpSum += tmpOffset*(tmpN % 10);
 				
-				for(int j = i + 1; j < str.length; j++) {
-					if(!(str[j] >= 'a' && str[j] <= 'z')){
-						i = j - 1;
-						break;
-					}
-					tmp += str[j];
-				}
-				if(tmp.length() >= 1 && !users.contains(tmp)) {
-					users.add(tmp);
-				}
+				tmpN /= 10;
+				tmpOffset *= i;
+			}
+			if(tmpSum == n) {
+				System.out.println(i);
+				return;
 			}
 		}
-		
-		Collections.sort(users);
-		
-		for(int i = 0; i < users.size(); i++) {
-			System.out.println(users.get(i));
-		}
+		System.out.println(-1);
 	}
 }
