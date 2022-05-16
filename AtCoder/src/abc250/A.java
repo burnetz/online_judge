@@ -8,30 +8,13 @@ public class A {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		
-		int h = sc.nextInt();
-		int w = sc.nextInt();
-		int r = sc.nextInt();
-		int c = sc.nextInt();
+		String str = sc.next();
 		
-		int count = 0;
-		//L
-		if(c >= 2) {
-			count++;
-		}
-		//R
-		if(c < w) {
-			count++;
-		}
-		//U
-		if(r >= 2) {
-			count++;
-		}
-		//D
-		if(r < h) {
-			count++;
+		for(int i = 0; i < 3; i++) {
+			str += str;
 		}
 		
-		System.out.println(count);
+		System.out.println(str.substring(0, 6));
 	}		
 }
 

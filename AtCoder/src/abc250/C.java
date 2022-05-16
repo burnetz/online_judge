@@ -1,5 +1,6 @@
 package abc250;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class C {
@@ -9,42 +10,34 @@ public class C {
 		Scanner sc = new Scanner(System.in);
 		
 		int n = sc.nextInt();
-		int q = sc.nextInt();
 		
-		int x[] = new int[n];
-		//それぞれの数字がどこにあるかを記録する配列
-		int index[] = new int[n];
+		String str[] = new String[n];
+		int score[] = new int[n];
+		
+		HashSet<String> set = new HashSet<String>();
 		
 		for(int i = 0; i < n; i++) {
-			x[i] = index[i] = i;
-		}
-		
-		for(int i = 0; i < q; i++) {
-			int tmp = sc.nextInt() - 1;
-			int tmpIndex = index[tmp];
-			int nextIndex;
-			if(tmpIndex != n - 1) {
-				nextIndex = tmpIndex + 1;
+			str[i] = sc.next();
+			score[i] = sc.nextInt();
+			
+			if(set.contains(str[i])) {
+				score[i] = -1;
 			}
 			else {
-				nextIndex = tmpIndex - 1;
+				set.add(str[i]);
 			}
-			
-			int swapTmp = x[tmpIndex];
-			x[tmpIndex] = x[nextIndex];
-			index[x[tmpIndex]] = tmpIndex;
-			x[nextIndex] = swapTmp;
-			index[x[nextIndex]] = nextIndex;
-						
-			StringBuffer sb = new StringBuffer();
-			
 		}
 		
-		StringBuffer sb = new StringBuffer();
+		int max = 0;
+		int maxIndex = 0;
 		
 		for(int i = 0; i < n; i++) {
-			sb.append((x[i] + 1) + " ");
+			if(max < score[i]) {
+				max = score[i];
+				maxIndex = i + 1;
+			}
 		}
-		System.out.println(sb);
+		
+		System.out.println(maxIndex);
 	}
 }

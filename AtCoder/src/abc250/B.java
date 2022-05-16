@@ -1,6 +1,5 @@
 package abc250;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class B {
@@ -10,27 +9,43 @@ public class B {
 		Scanner sc = new Scanner(System.in);
 		
 		int n = sc.nextInt();
-		int a = sc.nextInt();
-		int b = sc.nextInt();
+		int w = sc.nextInt();
 		
-		char[] white = new char[b];
-		char[] black = new char[b];
+		int a[] = new int[n];
 		
-		for(int i = 0; i < b; i++) {
-			white[i] = '.';
-			black[i] = '#';
+		for(int i = 0; i < n; i++) {
+			a[i] = sc.nextInt();
 		}
 		
-		for(int i = 0; i < n*a; i++) {
-			for(int j = 0; j < n; j++) {
-				if((i/a + j)%2 == 0) {
-					System.out.print(white);
+		boolean appear[] = new boolean[w + 1];
+		for(int i = 0; i < n; i++) {
+			if(a[i] <= w) {
+				appear[a[i]] = true;
+			}
+			for(int j = i + 1; j < n; j++) {
+				int tmp = a[i] + a[j];
+				
+				if(tmp <= w) {
+					appear[tmp] = true;
 				}
-				else {
-					System.out.print(black);
+				for(int k = j + 1; k < n; k++) {
+					tmp = a[i] + a[j] + a[k];
+					
+					if(tmp <= w) {
+						appear[tmp] = true;
+					}
 				}
 			}
-			System.out.println();
 		}
+		
+		int count = 0;
+		
+		for(int i = 0; i <= w; i++) {
+			if(appear[i]) {
+				count++;
+			}
+		}
+		
+		System.out.println(count);
 	}
 }
