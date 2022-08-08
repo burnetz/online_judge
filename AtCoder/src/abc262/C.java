@@ -1,8 +1,6 @@
 package abc262;
 
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Vector;
 
 public class C {
 
@@ -11,27 +9,28 @@ public class C {
 		Scanner sc = new Scanner(System.in);
 		
 		int n = sc.nextInt();
+		int m = sc.nextInt();
 		
-		int correct = 0;
-		int reverse = 0;
+		num = new int[m];
 		
-		int a[] = new int[n];
-		
-		for(int i = 0; i < n; i++) {
-			a[i] = sc.nextInt();
-		}
-		for(int i = 0; i < n; i++) {
-			if(a[i] == i + 1) {
-				correct++;
+		dfs(0, m, n);
+	}
+	
+	static int num[];
+	static void dfs(int depth, int maxNum, int length) {
+		if(depth == length) {
+			for(int i = 0; i < length; i++) {
+				System.out.print(num[i] + " ");
 			}
-			if(a[i] - 1 != i && a[a[i] - 1] == i + 1) {
-//				System.out.println(a[i] - 1 + " and " + i);
-				reverse++;
-			}
+			System.out.println();
+			
+			return;
 		}
-		reverse /= 2;
-//		System.out.println(correct + " " + reverse);
 		
-		System.out.println((long)correct*(correct - 1)/2 + reverse);
+		int start = depth == 0 ? 1 : num[depth - 1] + 1;
+		for(int i = start; i <= maxNum; i++) {
+			num[depth] = i;
+			dfs(depth + 1, maxNum, length);
+		}
 	}
 }

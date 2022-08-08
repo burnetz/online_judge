@@ -9,31 +9,19 @@ public class B {
 		Scanner sc = new Scanner(System.in);
 
 		int n = sc.nextInt();
-		int m = sc.nextInt();
-
-		boolean matrix[][] = new boolean[n][n];
 		
-		for(int i = 0; i < m; i++) {
-			int u = sc.nextInt() - 1;
-			int v = sc.nextInt() - 1;
-			
-			matrix[u][v] = true;
-			matrix[v][u] = true;
+		int p[] = new int[n];
+		int gen[] = new int[n];
+		
+		for(int i = 1; i < n; i++) {
+			p[i] = sc.nextInt() - 1;
 		}
 		
-		int count = 0;
-		
-		for(int i = 0; i < n; i++) {
-			for(int j = i + 1; j < n; j++) {
-				for(int k = j + 1; k < n; k++) {
-					if(matrix[i][j] && matrix[j][k] && matrix[i][k]) {
-						count++;
-					}
-				}
-			}
+		for(int i = 1; i < n; i++) {
+			gen[i] = gen[p[i]] + 1;
 		}
 		
-		System.out.println(count);
+		System.out.println(gen[n - 1]);
 	}
 }
 
